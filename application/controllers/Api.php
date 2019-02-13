@@ -109,11 +109,11 @@ class Api extends CI_Controller {
         $this->Psb->update_data_pendaftar($input);
     }
 
-    public function delete_pendaftar()
+    public function set_pendaftar()
     {
         $this->is_admin();
-        $id = $this->input->post('ids');
-        $this->Psb->delete_data_pendaftar($id);
+        $input = (object) $this->input->post();
+        $this->Psb->set_data_pendaftar($input);
     }
 
     public function delete_pendaftar_permanent()
@@ -146,12 +146,7 @@ class Api extends CI_Controller {
             'query' => [
                 'select' => '*',
                 'from' => 'pendaftar d',
-                'join' => [
-                    [
-                        'tbl' => 'gelombang g',
-                        'cond' => 'd.gelombang = g.id_gelombang',
-                    ]
-                ],
+                'join' => [ ['tbl' => 'gelombang g','cond' => 'd.gelombang = g.id_gelombang',] ],
                 'where' => $additional,
                 'order' => 'd.is_deleted DESC, d.id_pendaftar DESC'
             ]
@@ -164,6 +159,7 @@ class Api extends CI_Controller {
             $mts    = $item->is_mts==1?($item->is_pondok==1?"MTs dan Pondok":"MTs"):"";
             $ma     = $item->is_ma==1?($item->is_pondok==1?"MA dan Pondok":"MA"):"";
             $pondok = $item->is_pondok==1?($item->is_mts==0&&$item->is_ma==0?"Pondok":""):"";
+            $badge  = $item->status==0?"<span class='badge bg-blue'>Menunggu</span>":($item->status==1?"<span class='badge bg-green'>Diterima</span>":($item->status==2?"<span class='badge bg-red'>Ditolak</span>":""));
             $no++;
             $row = [];
             $row[] = $no;
@@ -171,12 +167,12 @@ class Api extends CI_Controller {
             $row[] = "<a href='javascript:void(0)' title='Edit Siswa' onclick='render(\"edit_siswa?id=$item->id_pendaftar\")' ><i class='fa fa-edit'></i></a>";
             $row[] = "<a href='javascript:void(0)' title='Tampilkan Detail' onclick='tampilDetail($item->id_pendaftar)' ><i class='fa fa-search-plus'></i></a>";
             $row[] = $item->no_daftar;
-            $row[] = $item->nama_gelombang;
             $row[] = $item->is_deleted==1?"<p class='deleted'>$item->nama_siswa</p>":$item->nama_siswa;
             $row[] = $item->tempat_lahir.", ".date('j M Y', strtotime($item->tanggal_lahir));
             $row[] = $item->asal_sekolah;
             $row[] = $item->orang_tua;
             $row[] = $item->no_telp;
+            $row[] = $badge;
             $data[] = $row;
             $i++;
         }

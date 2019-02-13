@@ -441,12 +441,12 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-xs-12 col-md-12 col-lg-12">
                         <div class="wow bounceInUp" data-wow-delay="0.2s">
                             <div id="owl-works" class="owl-carousel">
                                 <?php foreach ($fasilitas as $f) { ?>
                                 <div class="item">
-                                    <a href="<?php echo base_url().$f->foto_fasilitas?>" title="<?=$f->judul_foto?>" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+                                    <a href="<?php echo base_url().$f->foto_fasilitas?>" title="<?=$f->judul_foto?>" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php echo base_url().$f->foto_fasilitas?>">
                                         <img src="<?php echo base_url().$f->foto_fasilitas?>" class="img-responsive" alt="img">
                                     </a>
                                 </div>

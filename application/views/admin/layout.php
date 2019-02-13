@@ -93,6 +93,12 @@
 							<i class="fa fa-dashboard"></i>
 							<span>Dashboard</span>
 						</a>
+                    </li>
+                    <li>
+						<a href="<?=base_url()?>" target="_blank">
+							<i class="fa fa-send"></i>
+							<span>Lihat Situs</span>
+						</a>
 					</li>
 					<li class="treeview">
 						<a href="#">

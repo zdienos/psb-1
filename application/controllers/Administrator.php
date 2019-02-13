@@ -104,6 +104,7 @@ class Administrator extends CI_Controller {
             'jml_pengajar' => $this->Psb->get_count_table('pengajar'),
             'jml_gelombang' => $this->Psb->get_count_table('gelombang'),
             'jml_testimoni' => $this->Psb->get_count_table('testimoni'),
+            'jml_fasilitas' => $this->Psb->get_count_table('fasilitas'),
             'jml_penghasilan' => $this->Psb->get_count_table('penghasilan'),
             'jml_pendaftar' => $this->Psb->get_count_table('pendaftar', ['is_deleted' => 0]),
         ];
@@ -119,7 +120,6 @@ class Administrator extends CI_Controller {
 
     public function data_pendaftar($id)
     {
-        // $id = $this->input->get('id');
         $data['id'] = $id;
         if ($id == 1) {
             $data['h1'] = "Data MTs"; $link = "data_pendaftar/1"; $title = "Data Pendaftar MTs";
@@ -184,6 +184,13 @@ class Administrator extends CI_Controller {
         $data['breadcrumb'] = $this->push_breadcrumb("data_penghasilan", "Data Penghasilan");
         $data['penghasilan'] = $this->Psb->get_penghasilan();
         $this->load->view('admin/data_penghasilan', $data);
+    }
+
+    public function data_testimoni()
+    {
+        $data['breadcrumb'] = $this->push_breadcrumb("data_testimoni", "Data Testimoni");
+        $data['testimoni'] = $this->Psb->get_testimoni();
+        $this->load->view('admin/data_testimoni', $data);
     }
 
 }

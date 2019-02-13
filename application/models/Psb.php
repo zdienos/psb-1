@@ -359,47 +359,60 @@ class Psb extends CI_Model {
         if (!property_exists($input, "catatan")) {
             $input->catatan = null;
         }
-        $gelombang = $this->get_gelombang_aktif();
-        $x = $input->pilihan;
-        if ($x == 1) {
-            $code = $this->codeMts(); $is_mts = true; $is_ma = false; $is_pondok = false;
-        } elseif ($x == 2) {
-            $code = $this->codeMa(); $is_mts = false; $is_ma = true; $is_pondok = false;
-        } elseif ($x == 3) {
-            $code = $this->codePondok(); $is_mts = false; $is_ma = false; $is_pondok = true;
-        } elseif ($x == 4) {
-            $code = $this->codeMtsPondok(); $is_mts = true; $is_ma = false; $is_pondok = true;
-        } elseif ($x == 5) {
-            $code = $this->codeMaPondok(); $is_mts = false; $is_ma = true; $is_pondok = true;
-        }
-        $data = [
-            'no_daftar'     => $code,
-            'gelombang'     => $gelombang,
-            'nama_siswa'    => $input->nama_siswa,
-            'tempat_lahir'  => $input->tempat_lahir,
-            'tanggal_lahir' => date('Y-m-d', strtotime($input->tgl_lahir)),
-            'gender'        => $input->gender,
-            'alamat'        => $input->alamat,
-            'asal_sekolah'  => $input->asal_sekolah,
-            'orang_tua'     => $input->orang_tua,
-            'pekerjaan'     => $input->pekerjaan,
-            'penghasilan'   => $input->penghasilan,
-            'no_telp'       => $input->no_telp,
-            'is_mts'        => $is_mts,
-            'is_ma'         => $is_ma,
-            'is_pondok'     => $is_pondok,
-            'status'        => 0,
-            'catatan'       => $input->catatan,
-            'tgl_insert'    => date('Y-m-d H:i:s'),
-        ];
-        $this->db->insert('pendaftar', $data);
-        if ($this->db->affected_rows() == 1) {
-            $response->success = true;
-            $response->message = "Pendaftaran Berhasil, No Daftar Dapat Dilihat pada Menu Data Pendaftar";
+        $check_name = $this->check_name_pendaftar($input->nama_siswa);
+        $response->check_name = $check_name;
+        if ($check_name == true) {
+            $response->message = "Nama yang dimasukkan sudah terdaftar, silahkan cek data pendaftar";
         } else {
-            $response->message = "Terjadi Kesalahan Saat Mendaftar, Silahkan Ulangi";
+            $gelombang = $this->get_gelombang_aktif();
+            $x = $input->pilihan;
+            if ($x == 1) {
+                $code = $this->codeMts(); $is_mts = true; $is_ma = false; $is_pondok = false;
+            } elseif ($x == 2) {
+                $code = $this->codeMa(); $is_mts = false; $is_ma = true; $is_pondok = false;
+            } elseif ($x == 3) {
+                $code = $this->codePondok(); $is_mts = false; $is_ma = false; $is_pondok = true;
+            } elseif ($x == 4) {
+                $code = $this->codeMtsPondok(); $is_mts = true; $is_ma = false; $is_pondok = true;
+            } elseif ($x == 5) {
+                $code = $this->codeMaPondok(); $is_mts = false; $is_ma = true; $is_pondok = true;
+            }
+            $data = [
+                'no_daftar'     => $code,
+                'gelombang'     => $gelombang,
+                'nama_siswa'    => ucwords($input->nama_siswa),
+                'tempat_lahir'  => ucwords($input->tempat_lahir),
+                'tanggal_lahir' => date('Y-m-d', strtotime($input->tgl_lahir)),
+                'gender'        => $input->gender,
+                'alamat'        => $input->alamat,
+                'asal_sekolah'  => $input->asal_sekolah,
+                'orang_tua'     => ucwords($input->orang_tua),
+                'pekerjaan'     => ucwords($input->pekerjaan),
+                'penghasilan'   => $input->penghasilan,
+                'no_telp'       => $input->no_telp,
+                'is_mts'        => $is_mts,
+                'is_ma'         => $is_ma,
+                'is_pondok'     => $is_pondok,
+                'status'        => 0,
+                'catatan'       => $input->catatan,
+                'tgl_insert'    => date('Y-m-d H:i:s'),
+            ];
+            $this->db->insert('pendaftar', $data);
+            if ($this->db->affected_rows() == 1) {
+                $response->success = true;
+                $response->message = "Pendaftaran Berhasil, No Daftar Dapat Dilihat pada Menu Data Pendaftar";
+            } else {
+                $response->message = "Terjadi Kesalahan Saat Mendaftar, Silahkan Ulangi";
+            }
         }
         $this->makejson($response);
+    }
+
+    public function check_name_pendaftar($nama)
+    {
+        $this->db->where('nama_siswa', $nama);
+        $data = $this->db->get('pendaftar')->num_rows();
+        return $data>0?true:false;
     }
 
     public function update_data_pendaftar($input)
@@ -445,16 +458,18 @@ class Psb extends CI_Model {
         $this->makejson($response);
     }
 
-    public function delete_data_pendaftar($id)
+    public function set_data_pendaftar($input)
     {
         $response = $this->response();
-        $this->db->where_in('id_pendaftar', explode(',', $id));
-        $this->db->update('pendaftar', ['is_deleted' => 1]);
+        $title = $input->act==1?"Set Diterima":($input->act==2?"Set Ditolak":($input->act==3?"Menghapus":""));
+        $cond = $input->act==1?['status'=>1]:($input->act==2?['status'=>2]:($input->act==3?['is_deleted'=>1]:""));
+        $this->db->where_in('id_pendaftar', explode(',', $input->ids));
+        $this->db->update('pendaftar', $cond);
         if ($this->db->affected_rows() > 0) {
             $response->success = true;
-            $response->message = "Berhasil Menghapus Data";
+            $response->message = "Berhasil ".$title." Data Pendaftar Terpilih";
         } else {
-            $response->message = "Terjadi Kesalahan Saat Menghapus Data, Silahkan Ulangi";
+            $response->message = "Terjadi Kesalahan Saat ".$title." Data, Silahkan Ulangi";
         }
         $this->makejson($response);
     }
@@ -656,6 +671,11 @@ class Psb extends CI_Model {
         $this->db->where('d.is_deleted', 0);
         $this->db->order_by('d.id_pendaftar', 'asc');
         return $this->db->get()->result();
+    }
+
+    public function get_testimoni()
+    {
+        return $this->db->get('testimoni')->result();
     }
 }
 

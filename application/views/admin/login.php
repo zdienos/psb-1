@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/bootstrap.css')?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/AdminLTE.css')?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="shortcut icon" href="<?=base_url('uploads/favicon.ico')?>" type="image/x-icon">
     <script>var base_url = "<?php echo base_url();?>";</script>
 </head>
 

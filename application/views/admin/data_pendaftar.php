@@ -11,9 +11,11 @@
                 <div class="box-header with-border">
                     <div class="btn-group pull-right">
                         <button type="button" onclick="render('tambah_siswa')" class="btn btn-primary" title="Tambah Pendaftar"><i class="fa fa-plus"></i></button>
-                        <button type="button" id="hapus" class="btn btn-primary" title="Hapus Data Terpilih"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-primary action" data-id="3" title="Hapus Data Terpilih"><i class="fa fa-trash"></i></button>
                         <a href="<?=base_url('export/').$id?>" target="_blank" class="btn btn-primary" title="Export Excel"><i class="fa fa-file-excel-o"></i></a>
                         <button type="button" id="refresh" class="btn btn-primary" title="Refresh Data Siswa"><i class="fa fa-refresh"></i></button>
+                        <button type="button" class="btn btn-success action" data-id="1" title="Set Diterima"><i class="fa fa-check"></i></button>
+                        <button type="button" class="btn btn-danger action" data-id="2" title="Set Ditolak"><i class="fa fa-close"></i></button>
                         <?php if ($this->session->level == 9) {
                             echo "<button type='button' id='permanent' class='btn btn-danger' title='Hapus Permanent'><i class='fa fa-trash'></i></button>";
                         } ?>
@@ -29,11 +31,12 @@
                                     <th><i class="fa fa-edit"></i></th>
                                     <th><i class="fa fa-search-plus"></i></th>
                                     <th>No Daftar</th>
-                                    <th>Gelombang</th>
                                     <th>Nama Lengkap</th>
                                     <th>Tempat, Tgl lahir</th>
                                     <th>Asal Sekolah</th>
                                     <th>Orang Tua</th>
+                                    <th>No Telp</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -88,114 +91,8 @@
 </div>
 <script>
     var dataID = <?=$id?>;
-    var thisTable = $('#myTable').DataTable({ "processing": true, "pageLength": 50, "serverSide": true, "order": [], "ajax": { "url": base_url + "api/get_pendaftar", "type": "post", "data": {id:dataID} }, "columnDefs": [{ "targets": [0,1,2,3], "orderable": false, }, ], });
-    $('#master').on('click', function(e) {
-        if ($(this).is(':checked', true)) {
-            $(".check_id").prop('checked', true);
-        } else {
-            $(".check_id").prop('checked', false);
-        }
-    });
-    $("#hapus").click(function () {
-        var allVals = [];  
-        $(".check_id:checked").each(function() {  
-            allVals.push($(this).attr('data-id'));
-        });
-        if (allVals.length <= 0) {
-                alert("Pilih siswa terlebih dahulu.");
-            } else {
-                var check = confirm("Are you sure you want to delete this row?");
-                if (check == true) {
-                    var join_selected_values = allVals.join(",");
-                    $.ajax({
-                        url: base_url + 'api/delete_pendaftar',
-                        type: 'POST',
-                        data: 'ids=' + join_selected_values,
-                        dataType: 'json',
-                        success: function (result) {
-                            if (result.success == true) {
-                                toastr["success"](result.message, "Berhasil...");
-                                thisTable.ajax.reload();
-                            } else {
-                                toastr["error"](result.message, "Gagal...");
-                            }
-                        },
-                        error: function (data) {
-                            toastr["error"]("Terjadi Kesalahan Saat Posting Data", "Gatot...");
-                        }
-                    });
-                }
-            }
-    })
-    function tampilDetail(params) {
-        $.ajax({
-            url: base_url + "api/get_detail_pendaftar",
-            data: {id:params},
-            type: "post",
-            dataType: "json",
-            success: function (result) {
-                if (result.success == true) {
-                    var x = result.data;
-                    var bulan =  ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-                    var d = new Date(x.tanggal_lahir);
-                    var ttl = x.tempat_lahir+", "+d.getDate()+" "+bulan[d.getMonth()]+" "+d.getFullYear();
-                    var mts = x.is_mts==1?(x.is_pondok==1?"MTs dan Pondok":"MTs"):"";
-                    var ma = x.is_ma==1?(x.is_pondok==1?"MA dan Pondok":"MA"):"";
-                    var pondok = x.is_pondok==1?(x.is_mts==0&&x.is_ma==0?"Pondok":""):"";
-                    $(".modal-title").html(x.nama_siswa);
-                    $("#nodaftar").html(x.no_daftar);
-                    $("#pilihan").html(mts+ma+pondok);
-                    $("#nama_lengkap").html(x.nama_siswa);
-                    $("#ttl").html(ttl);
-                    $("#gender").html(x.gender==0?"Perempuan":"Laki-laki");
-                    $("#alamat").html(x.alamat);
-                    $("#asal_sekolah").html(x.asal_sekolah);
-                    $("#orang_tua").html(x.orang_tua);
-                    $("#pekerjaan").html(x.pekerjaan);
-                    $("#gaji").html(x.gaji);
-                    $("#no_telp").html(x.no_telp);
-                    $("#catatan").html(x.catatan);
-                } else {
-                    toastr["error"](result.message, "Gagal...");
-                }
-            }
-        })
-        $("#myModal").modal('show');
-    }
-    $("#refresh").click(function () {
-        thisTable.ajax.reload();
-    })
+    var thisTable=$("#myTable").DataTable({processing:!0,pageLength:50,serverSide:!0,order:[],ajax:{url:base_url+"api/get_pendaftar",type:"post",data:{id:dataID}},columnDefs:[{targets:[0,1,2,3,9,10],orderable:!1}]});function tampilDetail(a){$.ajax({url:base_url+"api/get_detail_pendaftar",data:{id:a},type:"post",dataType:"json",success:function(a){if(1==a.success){var e=a.data,t=new Date(e.tanggal_lahir),s=e.tempat_lahir+", "+t.getDate()+" "+["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"][t.getMonth()]+" "+t.getFullYear(),i=1==e.is_mts?1==e.is_pondok?"MTs dan Pondok":"MTs":"",l=1==e.is_ma?1==e.is_pondok?"MA dan Pondok":"MA":"",n=1==e.is_pondok&&0==e.is_mts&&0==e.is_ma?"Pondok":"";$(".modal-title").html(e.nama_siswa),$("#nodaftar").html(e.no_daftar),$("#pilihan").html(i+l+n),$("#nama_lengkap").html(e.nama_siswa),$("#ttl").html(s),$("#gender").html(0==e.gender?"Perempuan":"Laki-laki"),$("#alamat").html(e.alamat),$("#asal_sekolah").html(e.asal_sekolah),$("#orang_tua").html(e.orang_tua),$("#pekerjaan").html(e.pekerjaan),$("#gaji").html(e.gaji),$("#no_telp").html(e.no_telp),$("#catatan").html(e.catatan)}else toastr.error(a.message,"Gagal...")}}),$("#myModal").modal("show")}$("#master").on("click",function(a){$(this).is(":checked",!0)?$(".check_id").prop("checked",!0):$(".check_id").prop("checked",!1)}),$(".action").click(function(){var a=$(this).data("id"),e=[];if($(".check_id:checked").each(function(){e.push($(this).attr("data-id"))}),e.length<=0)alert("Pilih siswa terlebih dahulu.");else if(1==confirm("Apakah anda yakin melakukan tindakan ini. Lanjutkan..?")){var t=e.join(",");$.post(base_url+"api/set_pendaftar","ids="+t+"&act="+a,function(a){console.log(a),1==a.success?(toastr.success(a.message,"Berhasil..."),thisTable.ajax.reload()):toastr.error(a.message,"Gagal...")})}}),$("#refresh").click(function(){thisTable.ajax.reload()});
     <?php if ($this->session->level == 9) { ?>
-        $("#permanent").click(function () {
-        var allVals = [];  
-        $(".check_id:checked").each(function() {  
-            allVals.push($(this).attr('data-id'));
-        });
-        if (allVals.length <= 0) {
-                alert("Pilih siswa terlebih dahulu.");
-            } else {
-                var check = confirm("Are you sure you want to delete this row?");
-                if (check == true) {
-                    var join_selected_values = allVals.join(",");
-                    $.ajax({
-                        url: base_url + 'api/delete_pendaftar_permanent',
-                        type: 'POST',
-                        data: 'ids=' + join_selected_values,
-                        dataType: 'json',
-                        success: function (result) {
-                            if (result.success == true) {
-                                toastr["success"](result.message, "Berhasil...");
-                                thisTable.ajax.reload();
-                            } else {
-                                toastr["error"](result.message, "Gagal...");
-                            }
-                        },
-                        error: function (data) {
-                            toastr["error"]("Terjadi Kesalahan Saat Posting Data", "Gatot...");
-                        }
-                    });
-                }
-            }
-    })
+    $("#permanent").click(function(){var e=[];if($(".check_id:checked").each(function(){e.push($(this).attr("data-id"))}),e.length<=0)alert("Pilih siswa terlebih dahulu.");else if(1==confirm("Are you sure you want to delete this row?")){var a=e.join(",");$.post(base_url+"api/delete_pendaftar_permanent","ids="+a,function(e){1==e.success?(toastr.success(e.message,"Berhasil..."),thisTable.ajax.reload()):toastr.error(e.message,"Gagal...")})}});
     <?php } ?>
 </script>
