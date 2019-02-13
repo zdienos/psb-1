@@ -10,3 +10,6 @@ Fitur sistem ini adalah :
 - Menggunakan AdminLTE sebagai backend UI
 
 Source code sistem informasi penerimaan santri baru, link https://psb.ypi-minthol.org
+
+![alt text](https://raw.githubusercontent.com/kangzul/content-img/master/Screenshot_2019-02-13_09-32-57.png)
+![alt text](https://raw.githubusercontent.com/kangzul/content-img/master/Screenshot_2019-02-13_09-35-45.png)
