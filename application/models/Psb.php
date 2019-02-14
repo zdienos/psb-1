@@ -607,6 +607,11 @@ class Psb extends CI_Model {
         return $this->db->get_where('pengajar', ['id_pengajar' => $id])->row();
     }
 
+    public function get_detail_prestasi($id)
+    {
+        return $this->db->get_where('prestasi', ['id_prestasi' => $id])->row();
+    }
+
     public function tambah_data_fasilitas($input)
     {
         $response = $this->response();
@@ -637,11 +642,48 @@ class Psb extends CI_Model {
 		$this->makejson($response);
     }
 
+    public function tambah_data_prestasi($input)
+    {
+        $response = $this->response();
+        $data = [
+            'judul_foto' => $input->judul_foto,
+            'lembaga'    => $input->lembaga,
+            'keterangan' => $input->keterangan,
+            'tgl_upload' => date('Y-m-d H:i:s'),
+        ];
+        $this->db->insert('prestasi', $data);
+        if ($this->db->affected_rows() > 0) {
+			$id_prestasi = $this->db->insert_id();
+			$file_check = $this->check_upload_file("photo", FALSE);
+			if ($file_check->valid == TRUE) {
+				$path_photo = "uploads/prestasi/prestasi_".$id_prestasi;
+				$this->do_upload_image("./uploads/prestasi/", "prestasi_".$id_prestasi);
+				if ($this->upload->do_upload('photo')) {
+					$obj = ['foto' => $path_photo.$this->upload->data("file_ext"), ];
+					$this->db->where('id_prestasi', $id_prestasi);
+					$this->db->update('prestasi', $obj);
+				} else {
+					$response->message = "Gagal Upload Foto ".$this->upload->display_errors();
+				}
+			}
+			$response->success = true;
+			$response->message = "Berhasil Tambah Prestasi";
+		} else {
+			$response->message = "Gagal Menambahkan Prestasi ".$this->db->last_query();
+		}
+		$this->makejson($response);
+    }
+
     public function list_fasilitas($jumlah)
     {
         $this->db->limit($jumlah);
         $this->db->order_by('id_fasilitas', 'desc');
         return $this->db->get('fasilitas')->result();
+    }
+
+    public function list_prestasi()
+    {
+        return $this->db->get('prestasi')->result();
     }
 
     public function get_detail_gelombang($id)

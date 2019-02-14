@@ -299,6 +299,42 @@ class Api extends CI_Controller {
         $this->Psb->tambah_data_fasilitas($input);
     }
 
+    public function get_prestasi()
+    {
+        $this->is_admin();
+        $dataTable = [
+            'col_order' => ['judul_foto'],
+            'col_search' => ['judul_foto'],
+            'order' => ['id_prestasi' => 'desc'],
+            'query' => [ 'select' => '*', 'from' => 'prestasi']
+        ];
+        $list = $this->Psb->get_datatables($dataTable);
+        $data = [];
+        $no = $_POST['start'];
+        $i = 0;
+        foreach($list as $item){
+            $lembaga = $item->lembaga==1?"MTs":($item->lembaga==2?"MA":($item->lembaga==3?"Pondok":""));
+            $no++;
+            $row = [];
+            $row[] = $no;
+            $row[] = "<input type='checkbox' class='check_id' data-id='$item->id_prestasi'>";
+            $row[] = "<a href='javascript:void(0)' title='Edit Prestasi' onclick='render(\"edit_prestasi?id=$item->id_prestasi\")' ><i class='fa fa-edit'></i></a>";
+            $row[] = $item->judul_foto;
+            $row[] = $lembaga;
+            $row[] = "<img class='img-thumbnail' src='".base_url().$item->foto."' width='100px'>";
+            $row[] = date('j M Y H:i:s', strtotime($item->tgl_upload));
+            $data[] = $row;
+            $i++;
+        }
+        $this->Psb->datatables_output($dataTable, $data);
+    }
+
+    public function tambah_prestasi()
+    {
+        $input = (object) $this->input->post();
+        $this->Psb->tambah_data_prestasi($input);
+    }
+
     public function get_gelombang()
     {
         $this->is_admin();

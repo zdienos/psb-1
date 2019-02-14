@@ -54,6 +54,7 @@ $route['login'] = 'welcome/login';
 $route['logout'] = 'welcome/logout';
 $route['data-pendaftar'] = 'welcome/data_pendaftar';
 $route['profil-pengajar/(:num)'] = 'welcome/profil_pengajar/$1';
+$route['detail-prestasi/(:num)'] = 'welcome/detail_prestasi/$1';
 $route['export/(:num)'] = 'laporan/pendaftar/$1';
 $route['registrasi'] = 'api/registrasi';
 $route['authentication'] = 'api/cek_login';

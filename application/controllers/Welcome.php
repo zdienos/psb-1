@@ -14,7 +14,8 @@ class Welcome extends CI_Controller {
         $data['data'] = $this->Psb->list_pengaturan();
         $data['testimoni'] = $this->Psb->list_testimoni(6);
         $data['penghasilan'] = $this->Psb->list_penghasilan();
-        $data['pengajar'] = $this->Psb->list_pengajar();
+        // $data['pengajar'] = $this->Psb->list_pengajar();
+        $data['prestasi'] = $this->Psb->list_prestasi();
         $data['fasilitas'] = $this->Psb->list_fasilitas(6);
         $data['version'] = "1.0.0";
 		$this->load->view('welcome', $data);
@@ -45,5 +46,11 @@ class Welcome extends CI_Controller {
     {
         $data = $this->Psb->get_profil_pengajar($id);
         $this->load->view('profil_pengajar', $data);
+    }
+
+    public function detail_prestasi($id)
+    {
+        $data = $this->Psb->get_detail_prestasi($id);
+        $this->load->view('detail_prestasi', $data);
     }
 }

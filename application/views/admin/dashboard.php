@@ -15,6 +15,7 @@
                     <a class="btn btn-app" onclick="render('tambah_siswa')"> <i class="fa fa-plus"></i> Tambah Siswa </a>
                     <a class="btn btn-app" onclick="render('data_pendaftar/4')"> <span class="badge bg-maroon"><?=$jml_pendaftar?></span> <i class="fa fa-database"></i> Data Siswa </a>
                     <a class="btn btn-app" onclick="render('data_pengajar')"><span class="badge bg-blue"><?=$jml_pengajar?></span> <i class="fa fa-graduation-cap"></i> Data Pengajar </a>
+                    <a class="btn btn-app" onclick="render('data_prestasi')"><span class="badge bg-green"><?=$jml_pengajar?></span> <i class="fa fa-trophy"></i> Data Prestasi </a>
                     <a class="btn btn-app" onclick="render('data_testimoni')"> <span class="badge bg-red"><?=$jml_testimoni?></span> <i class="fa fa-bullhorn"></i> Testimoni </a>
                     <a class="btn btn-app" onclick="render('data_fasilitas')"> <span class="badge bg-yellow"><?=$jml_fasilitas?></span><i class="fa fa-home"></i> Fasilitas </a>
                     <a class="btn btn-app" onclick="render('data_penghasilan')"><span class="badge bg-green"><?=$jml_penghasilan?></span> <i class="fa fa-money"></i> Penghasilan </a>

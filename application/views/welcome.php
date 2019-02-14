@@ -79,7 +79,7 @@
                                     <h6>Mengapa Harus Minthol..??</h6>
                                     <ol class="lead-list">
                                         <li>
-                                            <span class="list"><a href="https://ypi-minthol.org/read/2/profil-yayasan" target="_blank">Sanad Keilmuan pendirinya tersambung kepada Rosululloh SAW.</a></span>
+                                            <span class="list"><a href="https://ypi-minthol.org/read/2/sanad-keilmuan" target="_blank">Sanad Keilmuan pendirinya tersambung kepada Rosululloh SAW.</a></span>
                                         </li>
                                         <li>
                                             <span class="list"><a href="https://youtu.be/TRWLLyYFsSc" target="_blank">Ponpes yang paling direkomendasikan.</a></span>
@@ -91,19 +91,19 @@
                                             <span class="list"><a href="http://https://ypi-minthol.org/read/13/struktur-organisasi" target="_blank">Kelembagaannya terstruktur kuat, mandiri dan modern.</a></span>
                                         </li>
                                         <li> 
-                                            <span class="list">Pengasuh dan asatidznya kompeten, professional, mendidik setulus hati dan sepenuh jiwa dengan pola asuh one companion for twenty student.</span>
+                                            <span class="list"><a href="https://ypi-minthol.org/read/20/pengasuh-dan-asatidz-minhajut-tholabah" target="_blank">Pengasuh dan asatidznya kompeten, professional, mendidik setulus hati dan sepenuh jiwa dengan pola asuh one companion for twenty student.</a></span>
                                         </li>
                                         <li> 
-                                            <span class="list">Sarprasnya representative, keren dan lengkap.</span>
+                                            <span class="list"><a href="https://ypi-minthol.org/read/19/fasilitas" target="_blank">Sarprasnya representative, keren dan lengkap.</a></span>
                                         </li>
                                         <li> 
-                                            <span class="list">Pembiayaannya terjangkau, transparan, accountable dengan menerapkan one door system.</span>
+                                            <span class="list"><a href="https://ypi-minthol.org/read/21/pembiayaan-santri-minhajut-tholabah" target="_blank">Pembiayaannya terjangkau, transparan, accountable dengan menerapkan one door system.</a></span>
                                         </li>
                                         <li> 
-                                            <span class="list">Lulusan santrinya beraqidah beramaliah dan berakhlaq pesantren, beridiologi pancasila, terbekali oleh kecakapan hidup dan mendapat beasiswa kuliah di perguruan tinggi ternama.</span>
+                                            <span class="list"><a href="https://youtu.be/N_x5yttK3-g" target="_blank">Lulusan santrinya beraqidah beramaliah dan berakhlaq pesantren, beridiologi pancasila, terbekali oleh kecakapan hidup dan mendapat beasiswa kuliah di perguruan tinggi ternama.</a></span>
                                         </li>
                                         <li> 
-                                            <span class="list">Evaluasi penyelenggaraan pendidikannya melibatkan konsultan pendidikan dan penilaiannya berbasis online.</span>
+                                            <span class="list"><a href="https://ypi-minthol.org/read/22/evaluasi-penyelenggaraan-pendidikan" target="_blank"> Evaluasi penyelenggaraan pendidikannya melibatkan konsultan pendidikan dan penilaiannya berbasis online. </a></span>
                                         </li>
                                     </ol>
                                 </div>
@@ -205,55 +205,6 @@
             </div>
         </section>
         <!-- /Section: intro -->
-
-        <!-- Section: boxes -->
-        <!-- <section id="boxes" class="home-section paddingtop-80">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3 col-md-3">
-                        <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="box text-center">
-
-                                <i class="fa fa-check fa-3x circled bg-skin"></i>
-                                <h4 class="h-bold">Pilihan Tepat</h4>
-                                <p>Minthol adalah pilihan tepat untuk mendidik putra/putri anda menjadi lulusan yang berguna karena dibekali dengan ilmu umum dan ilmu agama</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3">
-                        <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="box text-center">
-
-                                <i class="fa fa-dollar fa-3x circled bg-skin"></i>
-                                <h4 class="h-bold">Biaya Terjangkau</h4>
-                                <p>Biaya sangat terjangkau untuk semua kalangan, dan tersedia juga <b>Beasiswa</b> bagi siswa berprestasi / kurang mampu</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3">
-                        <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="box text-center">
-                                <i class="fa fa-clock-o fa-3x circled bg-skin"></i>
-                                <h4 class="h-bold">Up to date</h4>
-                                <p>Kami selalu berusaha untuk memberikan pembelajaran yang up to date sehingga tidak ketinggalan dengan sekolah di kota-kota besar</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3">
-                        <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="box text-center">
-
-                                <i class="fa fa-graduation-cap fa-3x circled bg-skin"></i>
-                                <h4 class="h-bold">Beasiswa Kuliah</h4>
-                                <p>Setiap tahun lulusan kami mendapatkan <b>Beasiswa</b> di berbagai kampus baik dalam maupun luar negeri</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section> -->
-        <!-- /Section: boxes -->
 
         <!-- Section: gelombang -->
         <section id="gelombang" class="home-section nopadding paddingtop-60">
@@ -364,8 +315,8 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="wow fadeInDown" data-wow-delay="0.1s">
                             <div class="section-heading text-center">
-                                <h2 class="h-bold">Pengajar</h2>
-                                <p>Pengajar kami adalah pengajar yang memiliki kompetensi di bidangnya</p>
+                                <h2 class="h-bold">Akreditasi dan Prestasi</h2>
+                                <p>Lembaga Sekolah kami terakreditasi A oleh Badan Akreditasi Nasional Sekolah/Madrasah (BAN S/M)</p>
                             </div>
                         </div>
                         <div class="divider-short"></div>
@@ -387,31 +338,30 @@
                             <div data-filter=".ma" class="cbp-filter-item">
                                 MA (<div class="cbp-filter-counter"></div>)
                             </div>
-                            <div data-filter=".yayasan" class="cbp-filter-item">
-                                Yayasan (<div class="cbp-filter-counter"></div>)
+                            <div data-filter=".pondok" class="cbp-filter-item">
+                                Pondok (<div class="cbp-filter-counter"></div>)
                             </div>
                         </div>
 
                         <div id="grid-container" class="cbp-l-grid-team">
                             <ul>
-                                <?php foreach ($pengajar as $item) {
-                                    $lembaga = $item->lembaga==1?"mts":($item->lembaga==2?"ma":($item->lembaga==3?"yayasan":""));
+                                <?php foreach ($prestasi as $item) {
+                                    $lembaga = $item->lembaga==1?"mts":($item->lembaga==2?"ma":($item->lembaga==3?"pondok":""));
                                 ?>
                                 <li class="cbp-item <?=$lembaga?>">
-                                    <a href="profil-pengajar/<?php echo $item->id_pengajar?>" class="cbp-caption cbp-singlePage">
+                                    <a href="detail-prestasi/<?php echo $item->id_prestasi?>" class="cbp-caption cbp-singlePage">
                                         <div class="cbp-caption-defaultWrap">
-                                            <img src="<?php echo base_url().$item->foto_pengajar ?>" alt="" width="100%">
+                                            <img src="<?php echo base_url().$item->foto ?>" alt="" width="100%">
                                         </div>
                                         <div class="cbp-caption-activeWrap">
                                             <div class="cbp-l-caption-alignCenter">
                                                 <div class="cbp-l-caption-body">
-                                                    <div class="cbp-l-caption-text">Lihat Profil</div>
+                                                    <div class="cbp-l-caption-text">Lihat Keterangan</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="profil-pengajar/<?php echo $item->id_pengajar?>" class="cbp-singlePage cbp-l-grid-team-name"><?=$item->nama_pengajar?></a>
-                                    <div class="cbp-l-grid-team-position"><?=$item->profesi?></div>
+                                    <a href="detail-prestasi/<?php echo $item->id_prestasi?>" class="cbp-singlePage cbp-l-grid-team-name"><?=$item->judul_foto?></a>
                                 </li>
                                 <?php } ?>
                             </ul>

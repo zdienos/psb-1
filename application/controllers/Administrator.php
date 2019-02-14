@@ -173,6 +173,18 @@ class Administrator extends CI_Controller {
         $this->load->view('admin/tambah_fasilitas', $data);
     }
 
+    public function data_prestasi()
+    {
+        $data['breadcrumb'] = $this->push_breadcrumb("data_prestasi", "Data Prestasi");
+        $this->load->view('admin/data_prestasi', $data);
+    }
+
+    public function tambah_prestasi()
+    {
+        $data['breadcrumb'] = $this->push_breadcrumb("tambah_prestasi", "Tambah Prestasi");
+        $this->load->view('admin/tambah_prestasi', $data);
+    }
+
     public function data_gelombang()
     {
         $data['breadcrumb'] = $this->push_breadcrumb("data_gelombang", "Data Gelombang");
