@@ -335,6 +335,12 @@ class Api extends CI_Controller {
         $this->Psb->tambah_data_prestasi($input);
     }
 
+    public function tambah_testimoni()
+    {
+        $input = (object) $this->input->post();
+        $this->Psb->tambah_data_testimoni($input);
+    }
+
     public function get_gelombang()
     {
         $this->is_admin();

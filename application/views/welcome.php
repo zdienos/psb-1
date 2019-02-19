@@ -57,7 +57,7 @@
                         <li class="active"><a href="#intro">Beranda</a></li>
                         <li><a href="#service">Cara Daftar</a></li>
                         <li><a href="<?=base_url('data-pendaftar')?>">Data Pendaftar</a></li>
-                        <li><a href="#pengajar">Pengajar</a></li>
+                        <li><a href="#prestasi">Prestasi</a></li>
                         <li><a href="#facilities">Fasilitas</a></li>
                         <li><a href="#testimonial">Testimoni</a></li>
                     </ul>
@@ -88,7 +88,7 @@
                                             <span class="list"><a href="https://ypi-minthol.org/read/14/standar-kompetensi-lulusan" target="_blank">Kurikulumnya simpel, terintegrasi dan model.</a></span>
                                         </li>
                                         <li> 
-                                            <span class="list"><a href="http://https://ypi-minthol.org/read/13/struktur-organisasi" target="_blank">Kelembagaannya terstruktur kuat, mandiri dan modern.</a></span>
+                                            <span class="list"><a href="https://ypi-minthol.org/read/13/struktur-organisasi" target="_blank">Kelembagaannya terstruktur kuat, mandiri dan modern.</a></span>
                                         </li>
                                         <li> 
                                             <span class="list"><a href="https://ypi-minthol.org/read/20/pengasuh-dan-asatidz-minhajut-tholabah" target="_blank">Pengasuh dan asatidznya kompeten, professional, mendidik setulus hati dan sepenuh jiwa dengan pola asuh one companion for twenty student.</a></span>
@@ -309,7 +309,7 @@
         <!-- /Section: services -->
 
         <!-- Section: team -->
-        <section id="pengajar" class="home-section bg-gray paddingbot-40">
+        <section id="prestasi" class="home-section bg-gray paddingbot-40">
             <div class="container marginbot-50">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">

@@ -8,6 +8,13 @@
     <div class="row">
         <div class="col-xs-12 col-md-12">
             <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="btn-group pull-right">
+                        <button type="button" onclick="render('tambah_testimoni')" class="btn btn-primary" title="Tambah Testimoni"><i class="fa fa-plus"></i></button>
+                        <button type="button" id="hapus" class="btn btn-primary" title="Hapus Data Terpilih"><i class="fa fa-trash"></i></button>
+                        <button type="button" id="refresh" class="btn btn-primary" title="Refresh Data Siswa"><i class="fa fa-refresh"></i></button>
+                    </div>
+                </div>
                 <div class="box-body">
                     <div class="table-responsive">
                         <table id="myTable" class="table table-hover table-striped table-condensed" width="100%">
@@ -26,8 +33,8 @@
                                 <?php $no=1; foreach ($testimoni as $item) {
                                     echo "<tr>";
                                     echo "<td>$no</td>";
-                                    echo "<td><input type='checkbox' class='check_id' data-id='$item->id'></td>";
-                                    echo "<td><a href='javascript:void(0)' title='Edit Testimoni' ><i class='fa fa-edit'></i></a></td>";
+                                    echo "<td><input type='checkbox' class='check_id' data-id='$item->id_testimoni'></td>";
+                                    echo "<td><a href='javascript:void(0)' title='Edit Testimoni'><i class='fa fa-edit'></i></a></td>";
                                     echo "<td>$item->nama</td>";
                                     echo "<td>$item->tempat</td>";
                                     echo "<td>$item->testimoni</td>";

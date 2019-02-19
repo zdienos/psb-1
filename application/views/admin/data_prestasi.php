@@ -38,7 +38,7 @@
     </div>
 </section>
 <script>
-    var thisTable = $('#myTable').DataTable({ "processing": true, "pageLength": 25, "serverSide": true, "order": [], "ajax": { "url": base_url + "api/get_prestasi", "type": "post" }, "columnDefs": [{ "targets": [0,1,2], "orderable": false, }, ], });
+    var thisTable = $('#myTable').DataTable({ "processing": true, "pageLength": 10, "serverSide": true, "order": [], "ajax": { "url": base_url + "api/get_prestasi", "type": "post" }, "columnDefs": [{ "targets": [0,1,2], "orderable": false, }, ], });
     $('#master').on('click', function(e) {
         if ($(this).is(':checked', true)) {
             $(".check_id").prop('checked', true);

@@ -97,16 +97,17 @@ class Administrator extends CI_Controller {
     public function dashboard()
     {
         $data = [
-            'breadcrumb' => $this->push_breadcrumb("dashboard", "Dashboard", true),
-            'grafik' => $this->Psb->get_statistik_pendaftar(),
-            'pie' => $this->Psb->get_statistik_gender(),
-            'jml_pengguna' => $this->Psb->get_count_table('admin'),
-            'jml_pengajar' => $this->Psb->get_count_table('pengajar'),
-            'jml_gelombang' => $this->Psb->get_count_table('gelombang'),
-            'jml_testimoni' => $this->Psb->get_count_table('testimoni'),
-            'jml_fasilitas' => $this->Psb->get_count_table('fasilitas'),
+            'breadcrumb'      => $this->push_breadcrumb("dashboard", "Dashboard", true),
+            'grafik'          => $this->Psb->get_statistik_pendaftar(),
+            'pie'             => $this->Psb->get_statistik_gender(),
+            'jml_pengguna'    => $this->Psb->get_count_table('admin'),
+            'jml_pengajar'    => $this->Psb->get_count_table('pengajar'),
+            'jml_prestasi'    => $this->Psb->get_count_table('prestasi'),
+            'jml_gelombang'   => $this->Psb->get_count_table('gelombang'),
+            'jml_testimoni'   => $this->Psb->get_count_table('testimoni'),
+            'jml_fasilitas'   => $this->Psb->get_count_table('fasilitas'),
             'jml_penghasilan' => $this->Psb->get_count_table('penghasilan'),
-            'jml_pendaftar' => $this->Psb->get_count_table('pendaftar', ['is_deleted' => 0]),
+            'jml_pendaftar'   => $this->Psb->get_count_table('pendaftar', ['is_deleted' => 0]),
         ];
         $this->load->view('admin/dashboard', $data);
     }
@@ -203,6 +204,12 @@ class Administrator extends CI_Controller {
         $data['breadcrumb'] = $this->push_breadcrumb("data_testimoni", "Data Testimoni");
         $data['testimoni'] = $this->Psb->get_testimoni();
         $this->load->view('admin/data_testimoni', $data);
+    }
+
+    public function tambah_testimoni()
+    {
+        $data['breadcrumb'] = $this->push_breadcrumb("tambah_testimoni", "Tambah Testimoni");
+        $this->load->view('admin/tambah_testimoni', $data);
     }
 
 }

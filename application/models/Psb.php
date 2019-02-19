@@ -597,6 +597,37 @@ class Psb extends CI_Model {
 		$this->makejson($response);
     }
 
+    public function tambah_data_testimoni($input)
+    {
+        $response = $this->response();
+        $data = [
+            'nama' => $input->nama,
+            'tempat' => $input->tempat,
+            'testimoni' => $input->testimoni,
+        ];
+        $this->db->insert('testimoni', $data);
+        if ($this->db->affected_rows() > 0) {
+			$id_testimoni = $this->db->insert_id();
+			$file_check = $this->check_upload_file("photo", FALSE);
+			if ($file_check->valid == TRUE) {
+				$path_photo = "uploads/testimoni/testimoni_".$id_testimoni;
+				$this->do_upload_image("./uploads/testimoni/", "testimoni_".$id_testimoni);
+				if ($this->upload->do_upload('photo')) {
+					$obj = ['foto' => $path_photo.$this->upload->data("file_ext"), ];
+					$this->db->where('id_testimoni', $id_testimoni);
+					$this->db->update('testimoni', $obj);
+				} else {
+					$response->message = "Gagal Upload Foto ".$this->upload->display_errors();
+				}
+			}
+			$response->success = true;
+			$response->message = "Berhasil Tambah Testimoni";
+		} else {
+			$response->message = "Gagal Menambahkan Testimoni ".$this->db->last_query();
+		}
+		$this->makejson($response);
+    }
+
     public function get_data_pengajar()
     {
         return $this->db->get('pengajar')->result();
