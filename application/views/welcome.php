@@ -47,7 +47,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="./">
-                        <img src="<?php echo base_url('assets/img/logo.png')?>" alt="" height="40"/>
+                        <img class="lazy" data-src="<?php echo base_url('assets/img/logo.png')?>" alt="" height="40"/>
                     </a>
                 </div>
 
@@ -211,7 +211,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-xs-12">
-                        <img src="<?=base_url('uploads/jadwal_pendaftaran_.jpg')?>" class="img-responsive" style="margin:0 auto" alt="Jadwal Pendaftaran">
+                        <img data-src="<?=base_url('uploads/jadwal_pendaftaran_.jpg')?>" class="img-responsive lazy" style="margin:0 auto" alt="Jadwal Pendaftaran">
                     </div>
                 </div>
             </div>
@@ -225,7 +225,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-6">
                         <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <img src="<?php echo base_url('assets/img/hello.png')?>" class="img-responsive" alt="" />
+                            <img data-src="<?php echo base_url('assets/img/hello.png')?>" class="img-responsive lazy" alt="" />
                         </div>
                     </div>
                     <div class="col-sm-3 col-md-3">
@@ -397,7 +397,7 @@
                                 <?php foreach ($fasilitas as $f) { ?>
                                 <div class="item">
                                     <a href="<?php echo base_url().$f->foto_fasilitas?>" title="<?=$f->judul_foto?>" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php echo base_url().$f->foto_fasilitas?>">
-                                        <img src="<?php echo base_url().$f->foto_fasilitas?>" class="img-responsive" alt="img">
+                                        <img data-src="<?php echo base_url().$f->foto_fasilitas?>" class="img-responsive lazy" alt="img">
                                     </a>
                                 </div>
                                 <?php } ?>
@@ -419,37 +419,24 @@
 
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <?php $no=1; foreach ($testimoni as $item) { 
-                                    if ($no < 4) { ?>
+                                    <?php $max = count($testimoni); $no=1; foreach ($testimoni as $item) {
+                                        $i = $no+3;
+                                        if($i % 3 == 1 && $no != 1) { echo "<div class='item'>"; }?>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="block-text rel zmin">
                                             <p><?=substr($item->testimoni,0,150)?>...</p>
                                             <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                                         </div>
                                         <div class="person-text rel text-light">
-                                            <img src="<?php echo base_url().$item->foto?>" alt="<?=$item->nama?>" class="person img-circle" />
+                                            <img data-src="<?php echo base_url().$item->foto?>" alt="<?=$item->nama?>" class="lazy person img-circle" />
                                             <a title="" href="#"><?=$item->nama?></a>
                                             <span><?=$item->tempat?></span>
                                         </div>
                                     </div>
-                                    <?php } $no++; } ?>
-                                </div>
-                                <div class="item">
-                                <?php $no=4; foreach ($testimoni as $item) { 
-                                    if ($no < 7) { ?>
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="block-text rel zmin">
-                                            <p><?=substr($item->testimoni,0,150)?>...</p>
-                                            <ins class="ab zmin sprite sprite-i-triangle block"></ins>
-                                        </div>
-                                        <div class="person-text rel text-light">
-                                            <img src="<?php echo base_url().$item->foto?>" alt="<?=$item->nama?>" class="person img-circle" />
-                                            <a title="" href="#"><?=$item->nama?></a>
-                                            <span><?=$item->tempat?></span>
-                                        </div>
-                                    </div>
-                                    <?php } $no++; } ?>
-                                </div>
+                                    <?php if($no % 3 == 0 || $no == $max) {
+                                        echo "</div>";
+                                    } ?>
+                                    <?php $no++; } ?>
                             </div>
 
                             <a class="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
@@ -556,34 +543,10 @@
     <script src="<?php echo base_url('assets/js/owl.carousel.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/nivo-lightbox.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap-datepicker.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/lazyload.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/custom.js?v=').$version?>"></script>
     <script>
-        var base_url = '<?=base_url()?>';
-        $("#formDaftar").submit(function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: base_url + "registrasi",
-                data: $(this).serialize(),
-                type: "post",
-                dataType: "json",
-                success: function (data) {
-                    alert(data.message);
-                    if (data.success == true) {
-                        location.reload();
-                    } else {
-                        $("#nama_siswa").focus();
-                    }
-                },
-                error: function (data) {
-                    alert("Kesalahan Saat Posting Data");
-                }
-            })
-        })
-        $("#datepicker").datepicker({
-            autoclose: true,
-            format: "dd-mm-yyyy",
-            orientation: "bottom right"
-        })
+        var myLazyLoad=new LazyLoad({elements_selector:".lazy",load_delay:800}),base_url="<?=base_url()?>";$("#formDaftar").submit(function(a){a.preventDefault(),$.ajax({url:base_url+"registrasi",data:$(this).serialize(),type:"post",dataType:"json",success:function(a){alert(a.message),1==a.success?location.reload():$("#nama_siswa").focus()},error:function(a){alert("Kesalahan Saat Posting Data")}})}),$("#datepicker").datepicker({autoclose:!0,format:"dd-mm-yyyy",orientation:"bottom right"});
     </script>
 </body>
 

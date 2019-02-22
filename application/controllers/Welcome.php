@@ -17,7 +17,7 @@ class Welcome extends CI_Controller {
         // $data['pengajar'] = $this->Psb->list_pengajar();
         $data['prestasi'] = $this->Psb->list_prestasi();
         $data['fasilitas'] = $this->Psb->list_fasilitas(6);
-        $data['version'] = "1.0.0";
+        $data['version'] = "1.0.1";
 		$this->load->view('welcome', $data);
     }
     

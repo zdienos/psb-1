@@ -326,7 +326,7 @@ class Psb extends CI_Model {
     public function list_testimoni($jumlah)
     {
         $this->db->limit($jumlah);
-        $this->db->order_by('id', 'desc');
+        $this->db->order_by('id_testimoni', 'desc');
         return $this->db->get('testimoni')->result();
     }
 

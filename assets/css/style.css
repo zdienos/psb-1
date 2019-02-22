@@ -1821,3 +1821,6 @@ a:focus {
 .list a {
     text-decoration: underline;
 }
+img:not([src]) {
+    visibility: hidden;
+}
